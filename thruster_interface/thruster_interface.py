@@ -14,7 +14,7 @@ class thrusters(Node):
             self.thrusters = pca9685.PCA9685(bus=1)
             self.thrusters.set_pwm_frequency(100)
             self.thrusters.output_enable()
-            self.thrusters.channel_set_duty_all(0.15)
+            self.thrusters.channels_set_duty_all(0.15)
             self.check = True
             sleep(1)
         except:
@@ -28,12 +28,12 @@ class thrusters(Node):
         liny = msg.linear.y
         linz = msg.linear.z
         if self.check == True:
-            self.thrusters.channel_set_duty(0, 0.15 - (linx-liny-angz) / 25)
-            self.thrusters.channel_set_duty(1, 0.15 - (linx+liny+angz) / 25)
-            self.thrusters.channel_set_duty(2, 0.15 - (angz-linx-liny) / 25)
-            self.thrusters.channel_set_duty(3, 0.15 - (liny-linx-angz) / 25)
-            self.thrusters.channel_set_duty(4, 0.15 - (-1*linz-angx) / 25)
-            self.thrusters.channel_set_duty(5, 0.15 - (-1*linz+angx) / 25)
+            self.thrusters.channels_set_duty(0, 0.15 - (linx-liny-angz) / 25)
+            self.thrusters.channels_set_duty(1, 0.15 - (linx+liny+angz) / 25)
+            self.thrusters.channels_set_duty(2, 0.15 - (angz-linx-liny) / 25)
+            self.thrusters.channels_set_duty(3, 0.15 - (liny-linx-angz) / 25)
+            self.thrusters.channels_set_duty(4, 0.15 - (-1*linz-angx) / 25)
+            self.thrusters.channels_set_duty(5, 0.15 - (-1*linz+angx) / 25)
         else:
             self.logger.info(str(0.15 - (linx-liny-angz) / 25))
             self.logger.info(str(0.15 - (linx+liny+angz) / 25))
