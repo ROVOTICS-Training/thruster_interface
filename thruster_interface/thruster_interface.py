@@ -11,7 +11,7 @@ class thrusters(Node):
         self.logger = self.get_logger()
         self.check = False
         try:
-            self.thrusters = pca9685.PCA9685()
+            self.thrusters = pca9685.PCA9685(bus=1)
             self.thrusters.set_pwm_frequency(100)
             self.thrusters.output_enable()
             self.thrusters.channel_set_duty_all(0.15)
